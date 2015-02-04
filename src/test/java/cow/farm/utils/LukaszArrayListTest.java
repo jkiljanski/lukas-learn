@@ -1,8 +1,5 @@
 package cow.farm.utils;
 
-//import org.junit.Assert;
-
-//import org.junit.Test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -174,7 +171,8 @@ public class LukaszArrayListTest {
 		Assert.assertEquals(-1, element);
 	}
 
-	@Test
+
+	@Test(enabled = false)
 	public void schouldRemoveCurretnElement() {
 		// given
 		LukaszGenericArrayList<String> list = new LukaszGenericArrayList<>();
@@ -188,7 +186,7 @@ public class LukaszArrayListTest {
 		Assert.assertEquals("three", element);
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void schouldRemoveCurretnIndexElement() {
 		// given
 		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
