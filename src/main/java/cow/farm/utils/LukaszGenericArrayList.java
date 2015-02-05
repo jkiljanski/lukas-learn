@@ -82,11 +82,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean contains(Object element) {
-		for (int i = 0; i < array.length; i++) {
-			//as you see, there is simmilar code here and below, so you can extract common logic
-			if (element == null ? get(i) == null : element.equals(get(i)))
-				return true;
-		}
+		int i = indexOf(element);
+		if (i >= 0) return true;
+		else
 		return false;
 	}
 
