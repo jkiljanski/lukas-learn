@@ -82,7 +82,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean contains(Object element) {
-		int i = indexOf(element);
+		int i = lastIndexOf(element);
 		if (i >= 0) return true;
 		else
 		return false;
@@ -96,12 +96,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object element) {
-		for (int i = 0; i < array.length; i++) {
-			// copy paste
-			if (element == null ? get(i) == null : element.equals(get(i)))
-				return i;
-		}
-		return -1;
+		return lastIndexOf(element);
 	}
 
 	@Override
@@ -114,7 +109,6 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	public int lastIndexOf(Object element) {
 		int highIndex = -1;
 		for (int i = 0; i < array.length; i++) {
-			// copy paste
 			if (element == null ? get(i) == null : element.equals(get(i)))
 				highIndex = i;
 		}
