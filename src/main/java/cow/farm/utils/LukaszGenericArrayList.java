@@ -137,24 +137,17 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean remove(Object element) {
-		int index=indexOf(element);
-		//here you can just call remove(index), sooooo you have code already written :)
-		if(index>=0){
-			E[] oldArray=array;
-			//extract line with array create
-			array = (E[]) new Object[array.length];
-			System.arraycopy(oldArray, (index + 1), array, index, lenght-1);
-			return true;
+		remove(indexOf(element));
+		return true;
 		}
-		else return false;
-	}
 
 	@Override
 	public E remove(int index) {
+		E[] oldArray = array;
+		array = (E[]) new Object[array.length];
 		if (index >= 0) {
-			E[] oldArray = array;
-			array = (E[]) new Object[array.length];
 			System.arraycopy(oldArray, index + 1, array, index, array.length);
+			return array[index];
 		}
 		return null;
 	}
