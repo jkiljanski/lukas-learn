@@ -121,8 +121,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
             if (checkNullAndEqualsElements(i, element)) {
                 highIndex = i;
             }
-            return highIndex;
         }
+        return highIndex;
+    }
 
         @Override
         public ListIterator listIterator () {
