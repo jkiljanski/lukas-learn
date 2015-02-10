@@ -1,9 +1,6 @@
 package cow.farm.utils;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 @SuppressWarnings("rawtypes")
 public class LukaszGenericArrayList<E> implements List<E> {
@@ -135,6 +132,13 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		return null;
 	}
 
+    private void checkIndexBounds(int index) {
+        if (index < 0)
+            throw new IndexOutOfBoundsException("Indeks listy mniejszy od zera.");
+        if (index > lenght)
+            throw new IndexOutOfBoundsException("Index Większy od rozmiaru listy.");
+    }
+
 	@Override
 	public boolean remove(Object element) {
 		int index=indexOf(element);
@@ -180,15 +184,14 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	}
 
 	@Override
-	public List subList(int fromIndex, int toIndex) {
-		if(fromIndex>=0 & toIndex>=0){
-			E[] subArray = (E[]) new Object[toIndex-fromIndex];
-			System.arraycopy(array, fromIndex, subArray, 0, toIndex-fromIndex);
-			//FIXME finish me
-			//return subArray;
-		}
-		return null;
-	}
+    //FIXME why return is red !!!!!!!!!!!!!!!! ????????????
+    //TODO call Jacek to fix or die....trying
+    public List<E> subList(int fromIndex, int toIndex) {
+        checkIndexBounds(fromIndex);
+        checkIndexBounds(toIndex);
+        E subArray = (E) Arrays.copyOfRange(array, fromIndex, toIndex);
+        return subArray;
+    }
 
 	@Override
 	public Object[] toArray() {
