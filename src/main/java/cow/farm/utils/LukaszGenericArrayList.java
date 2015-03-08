@@ -83,15 +83,15 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	private boolean checkNullAndEqualsElements(int i, Object element) {
 		if (element == null ? get(i) == null : element.equals(get(i))) {
 			return true;
-		} else return false;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean contains(Object element) {
 		int i = indexOf(element);
 		if (i >= 0) return true;
-		else
-			return false;
+		return false;
 	}
 
 	@Override
@@ -141,13 +141,15 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	public boolean remove(Object element) {
 		int index = indexOf(element);
 		//here you can just call remove(index), sooooo you have code already written :)
-		if (index >= 0) {
+		if (index < 0) {
+			return false;
+		} else {
 			E[] oldArray = array;
 			//extract line with array create
 			array = (E[]) new Object[array.length];
 			System.arraycopy(oldArray, (index + 1), array, index, lenght - 1);
 			return true;
-		} else return false;
+		}
 	}
 
 	@Override
