@@ -143,12 +143,11 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		//here you can just call remove(index), sooooo you have code already written :)
 		if (index < 0) {
 			return false;
-		} else {
-			E[] oldArray = array;
-			//extract line with array create
-			array = (E[]) new Object[array.length];
-			System.arraycopy(oldArray, (index + 1), array, index, lenght - 1);
-			return true;
+		}
+		E[] oldArray = array;
+		array = (E[]) new Object[array.length];
+		System.arraycopy(oldArray, (index + 1), array, index, lenght - 1);
+		return true;
 		}
 	}
 
