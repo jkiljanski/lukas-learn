@@ -145,10 +145,10 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	@Override
 	public boolean remove(Object element) {
 		int index = indexOf(element);
-		if (-1 == index)
+		if (-1 == index) {
 			return false;
-		else
-			remove(index);
+		}
+		remove(index);
 		return true;
 	}
 
