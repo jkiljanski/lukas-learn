@@ -139,9 +139,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	private void checkIndexBounds(int index) {
 		if (index < 0)
-			throw new IndexOutOfBoundsException("Indeks listy mniejszy od zera.");
+			throw new IndexOutOfBoundsException("Index out of bounds(less then 0.");
 		if (index > lenght)
-			throw new IndexOutOfBoundsException("Index Większy od rozmiaru listy.");
+			throw new IndexOutOfBoundsException("Index out of bound( higher then list length.");
 	}
 
 	@Override
