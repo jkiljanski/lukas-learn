@@ -1,9 +1,6 @@
 package cow.farm.utils;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 @SuppressWarnings("rawtypes")
 public class LukaszGenericArrayList<E> implements List<E> {
@@ -20,7 +17,12 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		//oh, this may be hard because of this casting, you can also keep Object[] and do the casing and checking in every method
 		// but maybe this also works
 		array = (E[]) new Object[INITIAL_CAPACITY];
+	}
 
+	private LukaszGenericArrayList(E[] subArray) {
+		int length = subArray.length;
+		array = Arrays.copyOf(subArray, length);
+		this.lenght = length;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -135,18 +137,24 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		return null;
 	}
 
+	private void checkIndexBounds(int index) {
+		if (index < 0)
+			throw new IndexOutOfBoundsException("Index out of bounds(less then 0.");
+		if (index > lenght)
+			throw new IndexOutOfBoundsException("Index out of bound( higher then list length.");
+	}
+
 	@Override
 	public boolean remove(Object element) {
-		int index=indexOf(element);
+		int index = indexOf(element);
 		//here you can just call remove(index), sooooo you have code already written :)
-		if(index>=0){
-			E[] oldArray=array;
+		if (index >= 0) {
+			E[] oldArray = array;
 			//extract line with array create
 			array = (E[]) new Object[array.length];
-			System.arraycopy(oldArray, (index + 1), array, index, lenght-1);
+			System.arraycopy(oldArray, (index + 1), array, index, lenght - 1);
 			return true;
-		}
-		else return false;
+		} else return false;
 	}
 
 	@Override
@@ -173,21 +181,19 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public E set(int index, E element) {
-		if(index>=0)
-		//what if index is = 100 and you have only 10 element array?
-			array[index]=element;
+		if (index >= 0)
+			//what if index is = 100 and you have only 10 element array?
+			array[index] = element;
 		return element;
 	}
 
 	@Override
-	public List subList(int fromIndex, int toIndex) {
-		if(fromIndex>=0 & toIndex>=0){
-			E[] subArray = (E[]) new Object[toIndex-fromIndex];
-			System.arraycopy(array, fromIndex, subArray, 0, toIndex-fromIndex);
-			//FIXME finish me
-			//return subArray;
-		}
-		return null;
+	public List<E> subList(int fromIndex, int toIndex) {
+		checkIndexBounds(fromIndex);
+		checkIndexBounds(toIndex);
+		E[] subArray = (E[]) Arrays.copyOfRange(array, fromIndex, toIndex);
+		LukaszGenericArrayList<E> partList = new LukaszGenericArrayList<>(subArray);
+		return partList;
 	}
 
 	@Override
