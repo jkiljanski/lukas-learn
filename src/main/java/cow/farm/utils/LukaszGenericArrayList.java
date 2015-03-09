@@ -1,6 +1,9 @@
 package cow.farm.utils;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 @SuppressWarnings("rawtypes")
 public class LukaszGenericArrayList<E> implements List<E> {
@@ -82,13 +85,17 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		return false;
 	}
 
+	private boolean checkNullAndEqualsElements(int i, Object element) {
+		if (element == null ? get(i) == null : element.equals(get(i))) {
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public boolean contains(Object element) {
-		for (int i = 0; i < array.length; i++) {
-			//as you see, there is simmilar code here and below, so you can extract common logic
-			if (element == null ? get(i) == null : element.equals(get(i)))
-				return true;
-		}
+		int i = indexOf(element);
+		if (i >= 0) return true;
 		return false;
 	}
 
@@ -100,11 +107,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object element) {
-		for (int i = 0; i < array.length; i++) {
-			// copy paste
-			if (element == null ? get(i) == null : element.equals(get(i)))
+		for (int i = 0; i < array.length; i++)
+			if (checkNullAndEqualsElements(i, element))
 				return i;
-		}
 		return -1;
 	}
 
@@ -118,9 +123,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	public int lastIndexOf(Object element) {
 		int highIndex = -1;
 		for (int i = 0; i < array.length; i++) {
-			// copy paste
-			if (element == null ? get(i) == null : element.equals(get(i)))
+			if (checkNullAndEqualsElements(i, element)) {
 				highIndex = i;
+			}
 		}
 		return highIndex;
 	}
@@ -148,13 +153,14 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	public boolean remove(Object element) {
 		int index = indexOf(element);
 		//here you can just call remove(index), sooooo you have code already written :)
-		if (index >= 0) {
-			E[] oldArray = array;
-			//extract line with array create
-			array = (E[]) new Object[array.length];
-			System.arraycopy(oldArray, (index + 1), array, index, lenght - 1);
-			return true;
-		} else return false;
+		if (index < 0) {
+			return false;
+		}
+		E[] oldArray = array;
+		array = (E[]) new Object[array.length];
+		System.arraycopy(oldArray, (index + 1), array, index, lenght - 1);
+		return true;
+		}
 	}
 
 	@Override
@@ -181,9 +187,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public E set(int index, E element) {
-		if (index >= 0)
-			//what if index is = 100 and you have only 10 element array?
-			array[index] = element;
+		if(index>=0)
+		//what if index is = 100 and you have only 10 element array?
+			array[index]=element;
 		return element;
 	}
 

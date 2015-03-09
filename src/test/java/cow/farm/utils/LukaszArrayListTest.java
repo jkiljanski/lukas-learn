@@ -181,7 +181,7 @@ public class LukaszArrayListTest {
 		list.add("three");
 		list.remove(1);
 		// when
-		String element=list.get(1);
+		String element = list.get(1);
 		// then
 		Assert.assertEquals("three", element);
 	}
@@ -199,7 +199,7 @@ public class LukaszArrayListTest {
 		// then
 		Assert.assertEquals(4, element);
 	}
-	
+
 	@Test
 	public void schouldSetCurrentElementWithNewValue() {
 		// given
@@ -207,7 +207,7 @@ public class LukaszArrayListTest {
 		for (int i = 5; i <= 0; i--) {
 			list.add(i);
 		}
-		list.set(1,4);
+		list.set(1, 4);
 		// when
 		int element = list.get(1);
 		// then
