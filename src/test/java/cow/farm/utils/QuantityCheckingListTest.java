@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class QuantityCheckingListTest {
 
 	@Test
-	public void shouldReturnMapOfValues(){
+	public void shouldReturnMapOfValues() {
 		//given
 		QuantityCheckingList<String> list = new QuantityCheckingList();
 		//when
@@ -20,6 +20,6 @@ public class QuantityCheckingListTest {
 		list.add("d");
 		//then
 		HashMap map = list.getQuantityOfEachObject();
-		Assert.assertEquals(0, );
+		Assert.assertEquals(2, map.get("a"));
 	}
 }
