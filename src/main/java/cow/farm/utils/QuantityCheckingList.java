@@ -5,18 +5,19 @@ import cow.farm.utils.LukaszGenericArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuantityCheckingList<T> extends LukaszGenericArrayList<T> {
+public class QuantityCheckingList<E> extends LukaszGenericArrayList<E> {
 
-	public HashMap<T, Integer> getQuantityOfEachObject() {
-		HashMap<T, Integer> hashMap = new HashMap<>();
+	public HashMap<E, Integer> getQuantityOfEachObject() {
+		HashMap<E, Integer> hashMap = new HashMap<>();
 		int value = 0;
-		for (T key : hashMap.keySet()) {
+		for (E key : array) {
 			if (!hashMap.containsKey(key)) {
 				hashMap.put(key, 1);
+			} else {
+				value = hashMap.get(key);
+				value++;
+				hashMap.put(key, value);
 			}
-			value = hashMap.get(key);
-			value++;
-			hashMap.put(key, value);
 		}
 		return hashMap;
 	}

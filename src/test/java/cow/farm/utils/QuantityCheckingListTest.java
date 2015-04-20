@@ -20,6 +20,9 @@ public class QuantityCheckingListTest {
 		list.add("d");
 		//then
 		HashMap map = list.getQuantityOfEachObject();
-		Assert.assertEquals(2, map.get("a"));
+		Assert.assertEquals(map.get("a"), 2);
+		Assert.assertEquals(map.get("b"), 2);
+		Assert.assertEquals(map.get("c"), 1);
+		Assert.assertEquals(map.get("d"), 1);
 	}
 }
