@@ -3,21 +3,19 @@ package cow.farm.repo;
 
 public class Cow {
 
-	String race;
+	final enum race;
+
+	public enum CowRace {black, white, stripes, brown};
 
 	public Cow() {
 		race = null;
 	}
 
-	public Cow(String race) {
+	public Cow(CowRace race) {
 		this.race = race;
 	}
 
-	public  String setRace(String race){
+	public  CowRace setRace(CowRace race){
 		this.race = race;
-	}
-
-	public String getRace(){
-		return race;
 	}
 }
