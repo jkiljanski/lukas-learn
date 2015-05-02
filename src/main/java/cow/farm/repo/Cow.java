@@ -1,21 +1,13 @@
 package cow.farm.repo;
 
 
-public class Cow {
+public final class Cow {
 
-	final enum race;
+	public enum Breed {ABONDANCE, ANGUS, RANDALL, REDPOOL}
+	Breed breed;
 
-	public enum CowRace {black, white, stripes, brown};
-
-	public Cow() {
-		race = null;
+	public Cow(Breed breed) {
+		breed =this.breed;
 	}
 
-	public Cow(CowRace race) {
-		this.race = race;
-	}
-
-	public  CowRace setRace(CowRace race){
-		this.race = race;
-	}
 }
