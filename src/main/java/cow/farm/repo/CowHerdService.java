@@ -4,6 +4,7 @@ package cow.farm.repo;
 import cow.farm.utils.QuantityCheckingList;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CowHerdService {
 
@@ -15,8 +16,9 @@ public class CowHerdService {
 		return cow;
 	}
 
-	public HashMap getHerdMap () {
-		HashMap cowBreadMap = cowList.getQuantityOfEachObject();
+	public Map<Cow, Integer> getHerdMap() {
+		Map<Cow, Integer> cowBreadMap = new HashMap<Cow, Integer>();
+		cowBreadMap = cowList.getQuantityOfEachObject();
 		return cowBreadMap;
 	}
 }

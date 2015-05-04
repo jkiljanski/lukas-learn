@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CowHerdServiceTest {
 
@@ -17,9 +18,11 @@ public class CowHerdServiceTest {
 		cow.makeCow(Cow.Breed.ABONDANCE);
 		cow.makeCow(Cow.Breed.REDPOOL);
 		// when
-		HashMap breedQuantity = cow.getHerdMap();
+		Map breedQuantity = cow.getHerdMap();
 		// then
 		Assert.assertEquals(breedQuantity.get(Cow.Breed.ANGUS), 2);
 		Assert.assertEquals(breedQuantity.get(Cow.Breed.ABONDANCE), 1);
+		Assert.assertEquals(breedQuantity.get(Cow.Breed.RANDALL), 1);
+		Assert.assertEquals(breedQuantity.get(Cow.Breed.REDPOOL), 1);
 	}
 }

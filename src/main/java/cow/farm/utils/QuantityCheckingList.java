@@ -3,14 +3,23 @@ package cow.farm.utils;
 import cow.farm.utils.LukaszGenericArrayList;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class QuantityCheckingList<T> extends LukaszGenericArrayList<T> {
+public class QuantityCheckingList<E> extends LukaszGenericArrayList<E> {
 
-	public QuantityCheckingList() {
-	}
-
-	public HashMap<T , Integer> getQuantityOfEachObject(){
-
+	public Map<E, Integer> getQuantityOfEachObject() {
+		Map<E, Integer> hashMap = new HashMap<>();
+		int value = 0;
+		for (E key : array) {
+			if (!hashMap.containsKey(key)) {
+				hashMap.put(key, 1);
+			} else {
+				value = hashMap.get(key);
+				value++;
+				hashMap.put(key, value);
+			}
+		}
+		return hashMap;
 	}
 
 }
