@@ -17,8 +17,6 @@ public class CowHerdService {
 	}
 
 	public Map<Cow, Integer> getHerdMap() {
-		Map<Cow, Integer> cowBreadMap = new HashMap<Cow, Integer>();
-		cowBreadMap = cowList.getQuantityOfEachObject();
-		return cowBreadMap;
+		return cowList.getQuantityOfEachObject();
 	}
 }
