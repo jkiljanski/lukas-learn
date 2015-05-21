@@ -3,7 +3,6 @@ package cow.farm.repo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class CowHerdServiceTest {
@@ -11,12 +10,8 @@ public class CowHerdServiceTest {
 	@Test
 	public void shouldAddCowToListAndReturnHashMap() {
 		// given
-		CowHerdService cow = new CowHerdService();
-		cow.makeCow(Cow.Breed.ANGUS);
-		cow.makeCow(Cow.Breed.ANGUS);
-		cow.makeCow(Cow.Breed.RANDALL);
-		cow.makeCow(Cow.Breed.ABONDANCE);
-		cow.makeCow(Cow.Breed.REDPOOL);
+		CowHerdService cowService = new CowHerdService();
+		cowService.addCow(new CowBuilder().build());
 		// when
 		Map breedQuantity = cow.getHerdMap();
 		// then

@@ -18,4 +18,8 @@ public class CowHerdService {
 	public Map<Cow.Breed, Integer> getHerdMap() {
 		return cowList.getQuantityOfEachAttribute();
 	}
+
+	public Cow addCow(Cow build) {
+		return makeCow(build);
+	}
 }
