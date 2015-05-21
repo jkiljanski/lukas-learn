@@ -3,12 +3,11 @@ package cow.farm.repo;
 
 import cow.farm.utils.BreedAttributeMaker;
 
-import java.util.List;
 import java.util.Map;
 
 public class CowHerdService {
 
-	List<Cow> cowList = new BreedAttributeMaker();
+	BreedAttributeMaker cowList = new BreedAttributeMaker();
 
 	public Cow makeCow(Cow.Breed breed) {
 		Cow cow = new Cow(breed);
@@ -17,6 +16,6 @@ public class CowHerdService {
 	}
 
 	public Map<Cow.Breed, Integer> getHerdMap() {
-		return cowList.;
+		return cowList.getQuantityOfEachAttribute();
 	}
 }
