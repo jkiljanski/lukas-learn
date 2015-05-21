@@ -1,14 +1,14 @@
 package cow.farm.repo;
 
 
-import cow.farm.utils.QuantityCheckingList;
+import cow.farm.utils.BreedAttributeMaker;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CowHerdService {
 
-	QuantityCheckingList<Cow> cowList = new QuantityCheckingList<>();
+	List<Cow> cowList = new BreedAttributeMaker();
 
 	public Cow makeCow(Cow.Breed breed) {
 		Cow cow = new Cow(breed);
@@ -16,9 +16,7 @@ public class CowHerdService {
 		return cow;
 	}
 
-	public Map<Cow, Integer> getHerdMap() {
-		Map<Cow, Integer> cowBreadMap = new HashMap<Cow, Integer>();
-		cowBreadMap = cowList.getQuantityOfEachObject();
-		return cowBreadMap;
+	public Map<Cow.Breed, Integer> getHerdMap() {
+		return cowList.;
 	}
 }
