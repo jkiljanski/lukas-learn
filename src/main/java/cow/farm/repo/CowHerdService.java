@@ -9,8 +9,8 @@ public class CowHerdService {
 
 	BreedAttributeMaker cowList = new BreedAttributeMaker();
 
-	public Cow makeCow(Cow.Breed breed) {
-		Cow cow = new Cow(breed);
+	public Cow makeCow(String name, Cow.Breed breed, float weight, Cow.Color color) {
+		Cow cow = new Cow(name, breed, weight, color);
 		cowList.add(cow);
 		return cow;
 	}
