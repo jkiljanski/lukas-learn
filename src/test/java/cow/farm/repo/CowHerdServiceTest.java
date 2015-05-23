@@ -11,12 +11,16 @@ public class CowHerdServiceTest {
 	public void shouldAddCowToListAndReturnHashMap() {
 		// given
 		CowHerdService cowService = new CowHerdService();
-		cowService.addCow(new CowBuilder().build());
+		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ABONDANCE).build());
+		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ABONDANCE).build());
+		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.RANDALL).build());
+		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.REDPOOL).build());
+		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ANGUS).build());
 		// when
-		Map breedQuantity = cow.getHerdMap();
+		Map breedQuantity = cowService.getHerdMap();
 		// then
-		Assert.assertEquals(breedQuantity.get(Cow.Breed.ANGUS), 2);
-		Assert.assertEquals(breedQuantity.get(Cow.Breed.ABONDANCE), 1);
+		Assert.assertEquals(breedQuantity.get(Cow.Breed.ANGUS), 1);
+		Assert.assertEquals(breedQuantity.get(Cow.Breed.ABONDANCE), 2);
 		Assert.assertEquals(breedQuantity.get(Cow.Breed.RANDALL), 1);
 		Assert.assertEquals(breedQuantity.get(Cow.Breed.REDPOOL), 1);
 	}

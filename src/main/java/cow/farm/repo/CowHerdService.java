@@ -19,7 +19,7 @@ public class CowHerdService {
 		return cowList.getQuantityOfEachAttribute();
 	}
 
-	public Cow addCow(Cow build) {
-		return makeCow(build);
+	public void addCow(Cow cow) {
+		cowList.add(cow);
 	}
 }
