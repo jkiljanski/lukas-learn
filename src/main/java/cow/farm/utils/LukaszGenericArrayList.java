@@ -20,7 +20,12 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		//oh, this may be hard because of this casting, you can also keep Object[] and do the casing and checking in every method
 		// but maybe this also works
 		array = (E[]) new Object[INITIAL_CAPACITY];
+	}
 
+	private LukaszGenericArrayList(E[] subArray) {
+		int length = subArray.length;
+		array = Arrays.copyOf(subArray, length);
+		this.lenght = length;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -80,13 +85,17 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		return false;
 	}
 
+	private boolean checkNullAndEqualsElements(int i, Object element) {
+		if (element == null ? get(i) == null : element.equals(get(i))) {
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public boolean contains(Object element) {
-		for (int i = 0; i < array.length; i++) {
-			//as you see, there is simmilar code here and below, so you can extract common logic
-			if (element == null ? get(i) == null : element.equals(get(i)))
-				return true;
-		}
+		int i = indexOf(element);
+		if (i >= 0) return true;
 		return false;
 	}
 
@@ -98,11 +107,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object element) {
-		for (int i = 0; i < array.length; i++) {
-			// copy paste
-			if (element == null ? get(i) == null : element.equals(get(i)))
+		for (int i = 0; i < array.length; i++)
+			if (checkNullAndEqualsElements(i, element))
 				return i;
-		}
 		return -1;
 	}
 
@@ -116,9 +123,9 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	public int lastIndexOf(Object element) {
 		int highIndex = -1;
 		for (int i = 0; i < array.length; i++) {
-			// copy paste
-			if (element == null ? get(i) == null : element.equals(get(i)))
+			if (checkNullAndEqualsElements(i, element)) {
 				highIndex = i;
+			}
 		}
 		return highIndex;
 	}
@@ -135,28 +142,29 @@ public class LukaszGenericArrayList<E> implements List<E> {
 		return null;
 	}
 
+	private void checkIndexBounds(int index) {
+		if (index < 0)
+			throw new IndexOutOfBoundsException("Index out of bounds(less then 0.");
+		if (index > lenght)
+			throw new IndexOutOfBoundsException("Index out of bound( higher then list length.");
+	}
+
 	@Override
 	public boolean remove(Object element) {
-		int index=indexOf(element);
-		//here you can just call remove(index), sooooo you have code already written :)
-		if(index>=0){
-			E[] oldArray=array;
-			//extract line with array create
-			array = (E[]) new Object[array.length];
-			System.arraycopy(oldArray, (index + 1), array, index, lenght-1);
-			return true;
+		int index = indexOf(element);
+		if (-1 == index) {
+			return false;
 		}
-		else return false;
+		remove(index);
+		return true;
 	}
 
 	@Override
 	public E remove(int index) {
-		if (index >= 0) {
-			E[] oldArray = array;
-			array = (E[]) new Object[array.length];
-			System.arraycopy(oldArray, index + 1, array, index, array.length);
-		}
-		return null;
+		checkIndexBounds(index);
+		System.arraycopy(array, index + 1, array, index, lenght - index);
+		lenght--;
+		return array[index];
 	}
 
 	@Override
@@ -180,14 +188,12 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	}
 
 	@Override
-	public List subList(int fromIndex, int toIndex) {
-		if(fromIndex>=0 & toIndex>=0){
-			E[] subArray = (E[]) new Object[toIndex-fromIndex];
-			System.arraycopy(array, fromIndex, subArray, 0, toIndex-fromIndex);
-			//FIXME finish me
-			//return subArray;
-		}
-		return null;
+	public List<E> subList(int fromIndex, int toIndex) {
+		checkIndexBounds(fromIndex);
+		checkIndexBounds(toIndex);
+		E[] subArray = (E[]) Arrays.copyOfRange(array, fromIndex, toIndex);
+		LukaszGenericArrayList<E> partList = new LukaszGenericArrayList<>(subArray);
+		return partList;
 	}
 
 	@Override

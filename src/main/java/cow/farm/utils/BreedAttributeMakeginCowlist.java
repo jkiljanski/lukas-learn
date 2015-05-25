@@ -2,7 +2,7 @@ package cow.farm.utils;
 
 import cow.farm.repo.Cow;
 
-public class BreedAttributeMaker extends AbstractQuantityCheckingList<Cow, Cow.Breed> {
+public class BreedAttributeMakeginCowlist extends AbstractQuantityCheckingList<Cow, Cow.Breed> {
 
 
 	@Override
