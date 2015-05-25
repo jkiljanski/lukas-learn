@@ -1,13 +1,13 @@
 package cow.farm.repo;
 
 
-import cow.farm.utils.BreedAttributeMaker;
+import cow.farm.utils.BreedAttributeMakeginCowlist;
 
 import java.util.Map;
 
 public class CowHerdService {
 
-	BreedAttributeMaker cowList = new BreedAttributeMaker();
+	BreedAttributeMakeginCowlist cowList = new BreedAttributeMakeginCowlist();
 
 	public Cow makeCow(Cow.Breed breed) {
 		Cow cow = new Cow(breed);

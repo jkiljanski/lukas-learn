@@ -212,19 +212,19 @@ public class LukaszArrayListTest {
 		int element = list.get(1);
 		// then
 		Assert.assertEquals(4, element);
-    }
+	}
 
-    @Test
-    public void schouldMakeSubListInCurrentRange() {
-        // given
-        LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
-        for (int i = 0; i <= 5; i++) {
-            list.add(i);
-        }
-        // when
-        LukaszGenericArrayList<Integer> subTestList = (LukaszGenericArrayList) list.subList(1, 4);
-        // then
-        Assert.assertEquals("1", subTestList.get(1));
-        Assert.assertEquals("4", subTestList.get(4));
-    }
+	@Test
+	public void schouldMakeSubListInCurrentRange() {
+		// given
+		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		LukaszGenericArrayList<Integer> subTestList = (LukaszGenericArrayList) list.subList(1, 4);
+		// then
+		Assert.assertEquals("1", subTestList.get(1));
+		Assert.assertEquals("4", subTestList.get(4));
+	}
 }
