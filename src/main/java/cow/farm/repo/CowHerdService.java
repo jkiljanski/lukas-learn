@@ -1,13 +1,13 @@
 package cow.farm.repo;
 
 
-import cow.farm.utils.BreedAttributeMaker;
+import cow.farm.utils.QuantityCheckingList;
 
 import java.util.Map;
 
 public class CowHerdService {
 
-	BreedAttributeMaker cowList = new BreedAttributeMaker();
+	QuantityCheckingList<Cow> cowList = new QuantityCheckingList<>();
 
 	public Cow makeCow(String name, Cow.Breed breed, float weight, Cow.Color color) {
 		Cow cow = new Cow(name, breed, weight, color);
@@ -15,8 +15,8 @@ public class CowHerdService {
 		return cow;
 	}
 
-	public Map<Cow.Breed, Integer> getHerdMap() {
-		return cowList.getQuantityOfEachAttribute();
+	public Map<Cow.Breed, Integer> getHerdQuantityByBreed() {
+		return cowList.getQuantityOfEachAttribute(new CowToBreedTransformation());
 	}
 
 	public void addCow(Cow cow) {
