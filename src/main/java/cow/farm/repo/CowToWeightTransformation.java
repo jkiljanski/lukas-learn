@@ -2,11 +2,11 @@ package cow.farm.repo;
 
 import cow.farm.utils.DomainToAttributeTransformation;
 
-public class CowToWeightTransformation implements DomainToAttributeTransformation<Cow, Short> {
+public class CowToWeightTransformation implements DomainToAttributeTransformation<Cow, Integer> {
 
 
 	@Override
-	public Short getAttributeFromDomain(Cow element) {
+	public Integer getAttributeFromDomain(Cow element) {
 		return element.getWeight();
 	}
 }

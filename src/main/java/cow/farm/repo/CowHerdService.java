@@ -23,7 +23,7 @@ public class CowHerdService {
 		return cowList.getQuantityOfEachAttribute(new CowToBreedTransformation());
 	}
 
-	public Map<Short, Integer> getHerdQuantityByWeight() {
+	public Map<Integer, Integer> getHerdQuantityByWeight() {
 		return cowList.getQuantityOfEachAttribute(new CowToWeightTransformation());
 	}
 

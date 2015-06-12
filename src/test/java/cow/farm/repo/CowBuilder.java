@@ -3,7 +3,7 @@ package cow.farm.repo;
 public class CowBuilder {
 	String name = "krasula";
 	Cow.Breed breed = Cow.Breed.ABONDANCE;
-	short weight = 500;
+	int weight = 500;
 	Cow.Color color = Cow.Color.BLACK;
 
 	public CowBuilder() {
@@ -19,7 +19,7 @@ public class CowBuilder {
 		return this;
 	}
 
-	public CowBuilder withWeight(short weight) {
+	public CowBuilder withWeight(int weight) {
 		this.weight = weight;
 		return this;
 	}
