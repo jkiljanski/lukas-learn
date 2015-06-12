@@ -3,7 +3,7 @@ package cow.farm.repo;
 public class CowBuilder {
 	String name = "krasula";
 	Cow.Breed breed = Cow.Breed.ABONDANCE;
-	float weight = 500;
+	short weight = 500;
 	Cow.Color color = Cow.Color.BLACK;
 
 	public CowBuilder() {
@@ -19,7 +19,7 @@ public class CowBuilder {
 		return this;
 	}
 
-	public CowBuilder withWeight(float weight) {
+	public CowBuilder withWeight(short weight) {
 		this.weight = weight;
 		return this;
 	}
@@ -33,4 +33,6 @@ public class CowBuilder {
 	public Cow build() {
 		return new Cow(name, breed, weight, color);
 	}
+
+
 }

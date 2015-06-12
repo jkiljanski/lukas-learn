@@ -10,10 +10,10 @@ public final class Cow {
 
 	private String name;
 	private final Breed breed;
-	private float weight;
+	private short weight;
 	private final Color color;
 
-	public Cow(String name, final Breed breed, float weight, final Color color) {
+	public Cow(String name, final Breed breed, short weight, final Color color) {
 		this.name = name;
 		this.breed = breed;
 		this.weight = weight;
@@ -28,7 +28,7 @@ public final class Cow {
 		return breed;
 	}
 
-	public float getWeight() {
+	public short getWeight() {
 		return weight;
 	}
 

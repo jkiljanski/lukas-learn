@@ -41,18 +41,18 @@ public class CowHerdServiceTest {
 		Assert.assertEquals(breedQuantity.get("Name1"), 2);
 		Assert.assertEquals(breedQuantity.get("Name2"), 1);
 		Assert.assertEquals(breedQuantity.get("Name3"), 1);
-		Assert.assertEquals(breedQuantity.get("Name 4"), 1);
+		Assert.assertEquals(breedQuantity.get("Name4"), 1);
 	}
 
 	@Test
 	public void shouldAddCowToListAndReturnHashMapByWeight() {
 		// given
 		CowHerdService cowService = new CowHerdService();
-		cowService.addCow(new CowBuilder().withWeight(100).build());
-		cowService.addCow(new CowBuilder().withWeight(100).build());
-		cowService.addCow(new CowBuilder().withWeight(150).build());
-		cowService.addCow(new CowBuilder().withWeight(200).build());
-		cowService.addCow(new CowBuilder().withWeight(250).build());
+		cowService.addCow(new CowBuilder().withWeight((short) 100).build());
+		cowService.addCow(new CowBuilder().withWeight((short) 100).build());
+		cowService.addCow(new CowBuilder().withWeight((short) 150).build());
+		cowService.addCow(new CowBuilder().withWeight((short) 200).build());
+		cowService.addCow(new CowBuilder().withWeight((short) 250).build());
 		// when
 		Map breedQuantity = cowService.getHerdQuantityByWeight();
 		// then
