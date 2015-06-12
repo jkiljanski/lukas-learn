@@ -15,8 +15,20 @@ public class CowHerdService {
 		return cow;
 	}
 
+	public Map<String, Integer> getHerdQuantityByName() {
+		return cowList.getQuantityOfEachAttribute(new CowToNameTransformation());
+	}
+
 	public Map<Cow.Breed, Integer> getHerdQuantityByBreed() {
 		return cowList.getQuantityOfEachAttribute(new CowToBreedTransformation());
+	}
+
+	public Map<Float, Integer> getHerdQuantityByWeight() {
+		return cowList.getQuantityOfEachAttribute(new CowToWeightTransformation());
+	}
+
+	public Map<Cow.Color, Integer> getHerdQuantityByColor() {
+		return cowList.getQuantityOfEachAttribute(new CowToColorTransformation());
 	}
 
 	public void addCow(Cow cow) {

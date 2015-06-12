@@ -1,5 +1,6 @@
 package cow.farm.repo;
 
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,7 +18,7 @@ public class CowHerdServiceTest {
 		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.REDPOOL).build());
 		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ANGUS).build());
 		// when
-		Map breedQuantity = cowService.getHerdMap();
+		Map breedQuantity = cowService.getHerdQuantityByBreed();
 		// then
 		Assert.assertEquals(breedQuantity.get(Cow.Breed.ANGUS), 1);
 		Assert.assertEquals(breedQuantity.get(Cow.Breed.ABONDANCE), 2);
