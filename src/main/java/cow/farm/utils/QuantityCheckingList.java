@@ -1,9 +1,6 @@
 package cow.farm.utils;
 
-import cow.farm.utils.LukaszGenericArrayList;
-
 import java.util.HashMap;
-import java.util.Map;
 
 public class QuantityCheckingList<E> extends LukaszGenericArrayList<E> {
 
