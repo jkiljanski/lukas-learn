@@ -1,15 +1,10 @@
 package cow.farm.repo;
 
 public class TestCowBuilder {
-	private String name;
-	private Cow.Breed breed;
-	private int weight;
-	private Cow.Color color;
-
-	public static final String NAME = "krasula";
-	public static final Cow.Breed BREED = Cow.Breed.ABONDANCE;
-	public static final int WEIGHT = 500;
-	public static final Cow.Color COLOR = Cow.Color.BLACK;
+	private String name = "krasula";
+	private Cow.Breed breed = Cow.Breed.ABONDANCE;
+	private int weight = 500;
+	private Cow.Color color = Cow.Color.BLACK;
 
 	public TestCowBuilder() {
 	}
@@ -36,7 +31,7 @@ public class TestCowBuilder {
 
 
 	public Cow build() {
-		return new Cow(NAME, BREED, WEIGHT, COLOR);
+		return new Cow(name, breed, weight, color);
 	}
 
 
