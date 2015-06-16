@@ -8,7 +8,7 @@ public final class Cow {
 
 	public enum Color {BLACK, BROWN, STRIPED}
 
-	private String name;
+	private final String name;
 	private final Breed breed;
 	private int weight;
 	private final Color color;

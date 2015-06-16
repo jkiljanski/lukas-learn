@@ -9,7 +9,7 @@ public class CowHerdService {
 
 	QuantityCheckingList<Cow> cowList = new QuantityCheckingList<>();
 
-	public Cow makeCow(String name, Cow.Breed breed, short weight, Cow.Color color) {
+	public Cow createCowAndAddToHerd(String name, Cow.Breed breed, short weight, Cow.Color color) {
 		Cow cow = new Cow(name, breed, weight, color);
 		cowList.add(cow);
 		return cow;

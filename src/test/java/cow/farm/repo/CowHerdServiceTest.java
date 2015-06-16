@@ -12,11 +12,11 @@ public class CowHerdServiceTest {
 	public void shouldAddCowToListAndReturnHashMapByBreed() {
 		// given
 		CowHerdService cowService = new CowHerdService();
-		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ABONDANCE).build());
-		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ABONDANCE).build());
-		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.RANDALL).build());
-		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.REDPOOL).build());
-		cowService.addCow(new CowBuilder().withBreed(Cow.Breed.ANGUS).build());
+		cowService.addCow(new TestCowBuilder().withBreed(Cow.Breed.ABONDANCE).build());
+		cowService.addCow(new TestCowBuilder().withBreed(Cow.Breed.ABONDANCE).build());
+		cowService.addCow(new TestCowBuilder().withBreed(Cow.Breed.RANDALL).build());
+		cowService.addCow(new TestCowBuilder().withBreed(Cow.Breed.REDPOOL).build());
+		cowService.addCow(new TestCowBuilder().withBreed(Cow.Breed.ANGUS).build());
 		// when
 		Map breedQuantity = cowService.getHerdQuantityByBreed();
 		// then
@@ -30,11 +30,11 @@ public class CowHerdServiceTest {
 	public void shouldAddCowToListAndReturnHashMapByName() {
 		// given
 		CowHerdService cowService = new CowHerdService();
-		cowService.addCow(new CowBuilder().withName("Name1").build());
-		cowService.addCow(new CowBuilder().withName("Name1").build());
-		cowService.addCow(new CowBuilder().withName("Name2").build());
-		cowService.addCow(new CowBuilder().withName("Name3").build());
-		cowService.addCow(new CowBuilder().withName("Name4").build());
+		cowService.addCow(new TestCowBuilder().withName("Name1").build());
+		cowService.addCow(new TestCowBuilder().withName("Name1").build());
+		cowService.addCow(new TestCowBuilder().withName("Name2").build());
+		cowService.addCow(new TestCowBuilder().withName("Name3").build());
+		cowService.addCow(new TestCowBuilder().withName("Name4").build());
 		// when
 		Map breedQuantity = cowService.getHerdQuantityByName();
 		// then
@@ -48,11 +48,11 @@ public class CowHerdServiceTest {
 	public void shouldAddCowToListAndReturnHashMapByWeight() {
 		// given
 		CowHerdService cowService = new CowHerdService();
-		cowService.addCow(new CowBuilder().withWeight(100).build());
-		cowService.addCow(new CowBuilder().withWeight(100).build());
-		cowService.addCow(new CowBuilder().withWeight(150).build());
-		cowService.addCow(new CowBuilder().withWeight(200).build());
-		cowService.addCow(new CowBuilder().withWeight(250).build());
+		cowService.addCow(new TestCowBuilder().withWeight(100).build());
+		cowService.addCow(new TestCowBuilder().withWeight(100).build());
+		cowService.addCow(new TestCowBuilder().withWeight(150).build());
+		cowService.addCow(new TestCowBuilder().withWeight(200).build());
+		cowService.addCow(new TestCowBuilder().withWeight(250).build());
 		// when
 		Map breedQuantity = cowService.getHerdQuantityByWeight();
 		// then
@@ -66,11 +66,11 @@ public class CowHerdServiceTest {
 	public void shouldAddCowToListAndReturnHashMapByColor() {
 		// given
 		CowHerdService cowService = new CowHerdService();
-		cowService.addCow(new CowBuilder().withColor(Cow.Color.BROWN).build());
-		cowService.addCow(new CowBuilder().withColor(Cow.Color.STRIPED).build());
-		cowService.addCow(new CowBuilder().withColor(Cow.Color.STRIPED).build());
-		cowService.addCow(new CowBuilder().withColor(Cow.Color.BROWN).build());
-		cowService.addCow(new CowBuilder().withColor(Cow.Color.BLACK).build());
+		cowService.addCow(new TestCowBuilder().withColor(Cow.Color.BROWN).build());
+		cowService.addCow(new TestCowBuilder().withColor(Cow.Color.STRIPED).build());
+		cowService.addCow(new TestCowBuilder().withColor(Cow.Color.STRIPED).build());
+		cowService.addCow(new TestCowBuilder().withColor(Cow.Color.BROWN).build());
+		cowService.addCow(new TestCowBuilder().withColor(Cow.Color.BLACK).build());
 		// when
 		Map breedQuantity = cowService.getHerdQuantityByColor();
 		// then
