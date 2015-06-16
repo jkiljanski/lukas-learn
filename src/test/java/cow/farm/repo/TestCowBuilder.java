@@ -15,28 +15,28 @@ public class TestCowBuilder {
 	}
 
 	public TestCowBuilder withName(String name) {
-		this.name = NAME;
+		this.name = name;
 		return this;
 	}
 
 	public TestCowBuilder withBreed(Cow.Breed breed) {
-		this.breed = BREED;
+		this.breed = breed;
 		return this;
 	}
 
 	public TestCowBuilder withWeight(int weight) {
-		this.weight = WEIGHT;
+		this.weight = weight;
 		return this;
 	}
 
 	public TestCowBuilder withColor(Cow.Color color) {
-		this.color = COLOR;
+		this.color = color;
 		return this;
 	}
 
 
 	public Cow build() {
-		return new Cow(name, breed, weight, color);
+		return new Cow(NAME, BREED, WEIGHT, COLOR);
 	}
 
 
