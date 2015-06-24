@@ -29,7 +29,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	private void ensureCapacity(int newCapacity) {
 		E[] oldArray = array;
 		array = (E[]) new Object[newCapacity];
-		System.arraycopy(oldArray, 0, array, 0, lenght - 1);
+		System.arraycopy(oldArray, 0, array, 0, lenght);
 	}
 
 	@Override
@@ -71,15 +71,23 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	}
 
 	@Override
-	public boolean addAll(Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addAll(Collection collection) {
+		addAll(lenght, collection);
+		return true;
 	}
 
 	@Override
-	public boolean addAll(int index, Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addAll(int index, Collection collection) {
+		Object[] collectionArray = collection.toArray();
+		int collectionSize = collectionArray.length;
+		ensureCapacity(lenght + collectionSize);
+		int offsetNumber = lenght - index;
+
+		if (offsetNumber >= 0) {
+			System.arraycopy(array, index, array, index + collectionSize, offsetNumber);
+			System.arraycopy(collectionArray, 0, array, index, collectionSize);
+		}
+		return true;
 	}
 
 	private boolean checkNullAndEqualsElements(int i, Object element) {
@@ -98,7 +106,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean containsAll(Collection c) {
-
+		// todo contains all collection
 		return false;
 	}
 
@@ -112,7 +120,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
+		// TODO iterator
 		return null;
 	}
 
@@ -129,13 +137,13 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public ListIterator listIterator() {
-		// TODO Auto-generated method stub
+		// TODO list iterator
 		return null;
 	}
 
 	@Override
 	public ListIterator listIterator(int index) {
-		// TODO Auto-generated method stub
+		// TODO list Iterator with index
 		return null;
 	}
 
@@ -166,13 +174,13 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean removeAll(Collection c) {
-		// TODO Auto-generated method stub
+		// TODO removeAll collection
 		return false;
 	}
 
 	@Override
 	public boolean retainAll(Collection c) {
-		// TODO Auto-generated method stub
+		// TODO retainAll
 		return false;
 	}
 
@@ -195,13 +203,13 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
+		// TODO Object to array
 		return null;
 	}
 
 	@Override
 	public Object[] toArray(Object[] a) {
-		// TODO Auto-generated method stub
+		// TODO to array also object
 		return null;
 	}
 
