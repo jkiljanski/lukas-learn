@@ -189,25 +189,25 @@ public class LukaszArrayListTest {
 		Assert.assertEquals("three", element);
 	}
 
-	@Test(enabled = false)
-	public void schouldRemoveCurretnIndexElement() {
+	@Test
+	public void shouldRemoveCurrentIndexElement() {
 		// given
 		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
-		for (int i = 5; i <= 0; i--) {
+		for (int i = 0; i <= 5; i++) {
 			list.add(i);
 		}
 		list.remove(0);
 		// when
 		int element = list.get(0);
 		// then
-		Assert.assertEquals(4, element);
+		Assert.assertEquals(1, element);
 	}
 
 	@Test
-	public void schouldSetCurrentElementWithNewValue() {
+	public void shouldSetCurrentElementWithNewValue() {
 		// given
 		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
-		for (int i = 5; i <= 0; i--) {
+		for (int i = 0; i <= 5; i++) {
 			list.add(i);
 		}
 		list.set(1, 4);
