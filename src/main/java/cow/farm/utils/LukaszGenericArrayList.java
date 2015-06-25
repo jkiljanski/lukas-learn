@@ -179,15 +179,14 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	}
 
 	@Override
-	public boolean retainAll(Collection c) {
-		// TODO retainAll
-		return false;
+	public boolean retainAll(Collection collection) {
+
+		return true;
 	}
 
 	@Override
 	public E set(int index, E element) {
-		if(index>=0)
-		//what if index is = 100 and you have only 10 element array?
+		checkIndexBounds(index);
 			array[index]=element;
 		return element;
 	}
