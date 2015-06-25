@@ -274,4 +274,44 @@ public class LukaszArrayListTest {
 		Assert.assertEquals(20, element1);
 		Assert.assertEquals(30, element2);
 	}
+
+	@Test
+	public void shouldRemoveElementsSpecifiedInCollection() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		List<Integer> collectionRemove = new ArrayList<>();
+		for (int i = 2; i <= 4; i++) {
+			collectionRemove.add(i);
+		}
+		list.removeAll(collectionRemove);
+		// then
+		boolean element1 = list.contains(3);
+		boolean element2 = list.contains(4);
+		Assert.assertEquals(false, element1);
+		Assert.assertEquals(false, element2);
+	}
+
+	@Test
+	public void shouldRetainElementsSpecifiedInCollection() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		List<Integer> collectionRetain = new ArrayList<>();
+		for (int i = 2; i <= 4; i++) {
+			collectionRetain.add(i);
+		}
+		list.retainAll(collectionRetain);
+		// then
+		boolean element1 = list.contains(3);
+		boolean element2 = list.contains(4);
+		Assert.assertEquals(true, element1);
+		Assert.assertEquals(true, element2);
+	}
 }

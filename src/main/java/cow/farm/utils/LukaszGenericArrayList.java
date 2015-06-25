@@ -6,7 +6,7 @@ import java.util.*;
 public class LukaszGenericArrayList<E> implements List<E> {
 
 	// typeO
-	int lenght = 0;
+	int length = 0;
 	int INITIAL_CAPACITY = 10;
 	int currentIndex = 0;
 
@@ -22,30 +22,30 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	private LukaszGenericArrayList(E[] subArray) {
 		int length = subArray.length;
 		array = Arrays.copyOf(subArray, length);
-		this.lenght = length;
+		this.length = length;
 	}
 
 	@SuppressWarnings("unchecked")
 	private void ensureCapacity(int newCapacity) {
 		E[] oldArray = array;
 		array = (E[]) new Object[newCapacity];
-		System.arraycopy(oldArray, 0, array, 0, lenght);
+		System.arraycopy(oldArray, 0, array, 0, length);
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return lenght == 0;
+		return length == 0;
 	}
 
 	@Override
 	public boolean add(E element) {
-		add(lenght, element);
+		add(length, element);
 		return true;
 	}
 
 	@Override
 	public void clear() {
-		lenght = 0;
+		length = 0;
 
 	}
 
@@ -55,24 +55,24 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	}
 
 	public int size() {
-		return lenght;
+		return length;
 	}
 
 	@Override
 	public void add(int index, E element) {
-		if (array.length == lenght) {
-			ensureCapacity(lenght * 2);
+		if (array.length == length) {
+			ensureCapacity(length * 2);
 		}
-		for (int i = index; i < lenght; i++) {
+		for (int i = index; i < length; i++) {
 			array[i] = array[i - 1];
 		}
 		array[index] = element;
-		lenght++;
+		length++;
 	}
 
 	@Override
 	public boolean addAll(Collection collection) {
-		addAll(lenght, collection);
+		addAll(length, collection);
 		return true;
 	}
 
@@ -80,8 +80,8 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	public boolean addAll(int index, Collection collection) {
 		Object[] collectionArray = collection.toArray();
 		int collectionSize = collectionArray.length;
-		ensureCapacity(lenght + collectionSize);
-		int offsetNumber = lenght - index;
+		ensureCapacity(length + collectionSize);
+		int offsetNumber = length - index;
 
 		if (offsetNumber >= 0) {
 			System.arraycopy(array, index, array, index + collectionSize, offsetNumber);
@@ -150,7 +150,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	private void checkIndexBounds(int index) {
 		if (index < 0)
 			throw new IndexOutOfBoundsException("Index out of bounds(less then 0.");
-		if (index > lenght)
+		if (index > length)
 			throw new IndexOutOfBoundsException("Index out of bound( higher then list length.");
 	}
 
@@ -167,27 +167,51 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	@Override
 	public E remove(int index) {
 		checkIndexBounds(index);
-		System.arraycopy(array, index + 1, array, index, lenght - index);
-		lenght--;
+		System.arraycopy(array, index + 1, array, index, length - index);
+		length--;
 		return array[index];
 	}
 
 	@Override
-	public boolean removeAll(Collection c) {
-		// TODO removeAll collection
-		return false;
+	public boolean removeAll(Collection collection) {
+		E[] array = this.array;
+		int newI = 0;
+		boolean callChange = false;
+		for (int i = 0; i < length; i++) {
+			if (collection.contains(array[i]) == false) {
+				array[newI] = array[i];
+				newI++;
+				callChange = true;
+			}
+		}
+		if (callChange = true)
+			for (; newI < length; newI++)
+				array[newI] = null;
+		return callChange;
 	}
 
 	@Override
 	public boolean retainAll(Collection collection) {
-
-		return true;
+		E[] array = this.array;
+		int newI = 0;
+		boolean callChange = false;
+		for (int i = 0; i < length; i++) {
+			if (collection.contains(array[i]) == true) {
+				array[newI] = array[i];
+				newI++;
+				callChange = true;
+			}
+		}
+		if (callChange = true)
+			for (; newI < length; newI++)
+				array[newI] = null;
+		return callChange;
 	}
 
 	@Override
 	public E set(int index, E element) {
 		checkIndexBounds(index);
-			array[index]=element;
+		array[index] = element;
 		return element;
 	}
 
