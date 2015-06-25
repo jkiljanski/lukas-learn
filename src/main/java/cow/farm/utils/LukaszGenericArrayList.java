@@ -174,29 +174,20 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean removeAll(Collection collection) {
-		E[] array = this.array;
-		int newI = 0;
-		boolean callChange = false;
-		for (int i = 0; i < length; i++) {
-			if (collection.contains(array[i]) == false) {
-				array[newI] = array[i];
-				newI++;
-				callChange = true;
-			}
-		}
-		if (callChange = true)
-			for (; newI < length; newI++)
-				array[newI] = null;
-		return callChange;
+		return modifierCollectionRemove(collection, false);
 	}
 
 	@Override
 	public boolean retainAll(Collection collection) {
+		return modifierCollectionRemove(collection, true);
+	}
+
+	private boolean modifierCollectionRemove(Collection collection, boolean modifier) {
 		E[] array = this.array;
 		int newI = 0;
 		boolean callChange = false;
 		for (int i = 0; i < length; i++) {
-			if (collection.contains(array[i]) == true) {
+			if (collection.contains(array[i]) == modifier) {
 				array[newI] = array[i];
 				newI++;
 				callChange = true;
