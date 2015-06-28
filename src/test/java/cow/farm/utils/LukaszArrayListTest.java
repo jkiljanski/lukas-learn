@@ -4,6 +4,9 @@ package cow.farm.utils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LukaszArrayListTest {
 
 	@Test
@@ -186,25 +189,25 @@ public class LukaszArrayListTest {
 		Assert.assertEquals("three", element);
 	}
 
-	@Test(enabled = false)
-	public void schouldRemoveCurretnIndexElement() {
+	@Test
+	public void shouldRemoveCurrentIndexElement() {
 		// given
 		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
-		for (int i = 5; i <= 0; i--) {
+		for (int i = 0; i <= 5; i++) {
 			list.add(i);
 		}
 		list.remove(0);
 		// when
 		int element = list.get(0);
 		// then
-		Assert.assertEquals(4, element);
+		Assert.assertEquals(1, element);
 	}
 
 	@Test
-	public void schouldSetCurrentElementWithNewValue() {
+	public void shouldSetCurrentElementWithNewValue() {
 		// given
 		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
-		for (int i = 5; i <= 0; i--) {
+		for (int i = 0; i <= 5; i++) {
 			list.add(i);
 		}
 		list.set(1, 4);
@@ -212,19 +215,103 @@ public class LukaszArrayListTest {
 		int element = list.get(1);
 		// then
 		Assert.assertEquals(4, element);
-    }
+	}
 
-    @Test(enabled = false)
-    public void shouldMakeSubListInCurrentRange() {
-        // given
-        LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
-        for (int i = 0; i <= 5; i++) {
-            list.add(i);
-        }
-        // when
-        LukaszGenericArrayList<Integer> subTestList = (LukaszGenericArrayList) list.subList(1, 4);
-        // then
-        Assert.assertEquals("1", subTestList.get(1));
-        Assert.assertEquals("4", subTestList.get(4));
-    }
+	@Test(enabled = false)
+	public void shouldMakeSubListInCurrentRange() {
+		// given
+		LukaszGenericArrayList<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		LukaszGenericArrayList<Integer> subTestList = (LukaszGenericArrayList) list.subList(1, 4);
+		// then
+		Assert.assertEquals("1", subTestList.get(1));
+		Assert.assertEquals("4", subTestList.get(4));
+	}
+
+	@Test
+	public void shouldAddCollection() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		List<Integer> collectionAdd = new ArrayList<>();
+		collectionAdd.add(10);
+		collectionAdd.add(20);
+		collectionAdd.add(30);
+		collectionAdd.add(40);
+		collectionAdd.add(50);
+		list.addAll(collectionAdd);
+		// then
+		int element1 = list.get(6);
+		int element2 = list.get(7);
+		Assert.assertEquals(10, element1);
+		Assert.assertEquals(20, element2);
+	}
+
+	@Test
+	public void shouldAddCollectionAtSpecificIndex() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		List<Integer> collectionAdd = new ArrayList<>();
+		collectionAdd.add(10);
+		collectionAdd.add(20);
+		collectionAdd.add(30);
+		collectionAdd.add(40);
+		collectionAdd.add(50);
+		list.addAll(2, collectionAdd);
+		// then
+		int element1 = list.get(3);
+		int element2 = list.get(4);
+		Assert.assertEquals(20, element1);
+		Assert.assertEquals(30, element2);
+	}
+
+	@Test
+	public void shouldRemoveElementsSpecifiedInCollection() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		List<Integer> collectionRemove = new ArrayList<>();
+		for (int i = 2; i <= 4; i++) {
+			collectionRemove.add(i);
+		}
+		list.removeAll(collectionRemove);
+		// then
+		boolean element1 = list.contains(3);
+		boolean element2 = list.contains(4);
+		Assert.assertEquals(false, element1);
+		Assert.assertEquals(false, element2);
+	}
+
+	@Test
+	public void shouldRetainElementsSpecifiedInCollection() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		List<Integer> collectionRetain = new ArrayList<>();
+		for (int i = 2; i <= 4; i++) {
+			collectionRetain.add(i);
+		}
+		list.retainAll(collectionRetain);
+		// then
+		boolean element1 = list.contains(3);
+		boolean element2 = list.contains(4);
+		Assert.assertEquals(true, element1);
+		Assert.assertEquals(true, element2);
+	}
 }

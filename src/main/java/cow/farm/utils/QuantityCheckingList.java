@@ -1,22 +1,26 @@
 package cow.farm.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-public class QuantityCheckingList<E> extends LukaszGenericArrayList<E> {
+public class QuantityCheckingList<D> extends ArrayList<D> {
 
-	public HashMap<E, Integer> getQuantityOfEachObject() {
-		HashMap<E, Integer> hashMap = new HashMap<>();
+	public <A> Map<A, Integer> getQuantityOfEachAttribute(DomainToAttributeTransformation<D, A> transformation) {
+		Map<A, Integer> hashMap = new HashMap<>();
 		int value = 0;
-		for (E key : array) {
-			if (!hashMap.containsKey(key)) {
-				hashMap.put(key, 1);
+		for (D element : this) {
+			A attribute = transformation.getAttributeFromDomain(element);
+			if (!hashMap.containsKey(attribute)) {
+				hashMap.put(attribute, 1);
 			} else {
-				value = hashMap.get(key);
+				value = hashMap.get(attribute);
 				value++;
-				hashMap.put(key, value);
+				hashMap.put(attribute, value);
 			}
 		}
 		return hashMap;
 	}
+
 
 }

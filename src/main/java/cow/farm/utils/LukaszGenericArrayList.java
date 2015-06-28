@@ -1,16 +1,12 @@
 package cow.farm.utils;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 @SuppressWarnings("rawtypes")
 public class LukaszGenericArrayList<E> implements List<E> {
 
 	// typeO
-	int lenght = 0;
+	int length = 0;
 	int INITIAL_CAPACITY = 10;
 	int currentIndex = 0;
 
@@ -26,30 +22,30 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	private LukaszGenericArrayList(E[] subArray) {
 		int length = subArray.length;
 		array = Arrays.copyOf(subArray, length);
-		this.lenght = length;
+		this.length = length;
 	}
 
 	@SuppressWarnings("unchecked")
 	private void ensureCapacity(int newCapacity) {
 		E[] oldArray = array;
 		array = (E[]) new Object[newCapacity];
-		System.arraycopy(oldArray, 0, array, 0, lenght - 1);
+		System.arraycopy(oldArray, 0, array, 0, length);
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return lenght == 0;
+		return length == 0;
 	}
 
 	@Override
 	public boolean add(E element) {
-		add(lenght, element);
+		add(length, element);
 		return true;
 	}
 
 	@Override
 	public void clear() {
-		lenght = 0;
+		length = 0;
 
 	}
 
@@ -59,31 +55,39 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	}
 
 	public int size() {
-		return lenght;
+		return length;
 	}
 
 	@Override
 	public void add(int index, E element) {
-		if (array.length == lenght) {
-			ensureCapacity(lenght * 2);
+		if (array.length == length) {
+			ensureCapacity(length * 2);
 		}
-		for (int i = index; i < lenght; i++) {
+		for (int i = index; i < length; i++) {
 			array[i] = array[i - 1];
 		}
 		array[index] = element;
-		lenght++;
+		length++;
 	}
 
 	@Override
-	public boolean addAll(Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addAll(Collection collection) {
+		addAll(length, collection);
+		return true;
 	}
 
 	@Override
-	public boolean addAll(int index, Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addAll(int index, Collection collection) {
+		Object[] collectionArray = collection.toArray();
+		int collectionSize = collectionArray.length;
+		ensureCapacity(length + collectionSize);
+		int offsetNumber = length - index;
+
+		if (offsetNumber >= 0) {
+			System.arraycopy(array, index, array, index + collectionSize, offsetNumber);
+			System.arraycopy(collectionArray, 0, array, index, collectionSize);
+		}
+		return true;
 	}
 
 	private boolean checkNullAndEqualsElements(int i, Object element) {
@@ -102,7 +106,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public boolean containsAll(Collection c) {
-
+		// todo contains all collection
 		return false;
 	}
 
@@ -116,7 +120,7 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
+		// TODO iterator
 		return null;
 	}
 
@@ -133,20 +137,20 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public ListIterator listIterator() {
-		// TODO Auto-generated method stub
+		// TODO list iterator
 		return null;
 	}
 
 	@Override
 	public ListIterator listIterator(int index) {
-		// TODO Auto-generated method stub
+		// TODO list Iterator with index
 		return null;
 	}
 
 	private void checkIndexBounds(int index) {
 		if (index < 0)
 			throw new IndexOutOfBoundsException("Index out of bounds(less then 0.");
-		if (index > lenght)
+		if (index > length)
 			throw new IndexOutOfBoundsException("Index out of bound( higher then list length.");
 	}
 
@@ -163,28 +167,42 @@ public class LukaszGenericArrayList<E> implements List<E> {
 	@Override
 	public E remove(int index) {
 		checkIndexBounds(index);
-		System.arraycopy(array, index + 1, array, index, lenght - index);
-		lenght--;
+		System.arraycopy(array, index + 1, array, index, length - index);
+		length--;
 		return array[index];
 	}
 
 	@Override
-	public boolean removeAll(Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeAll(Collection collection) {
+		return modifierCollectionRemove(collection, false);
 	}
 
 	@Override
-	public boolean retainAll(Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean retainAll(Collection collection) {
+		return modifierCollectionRemove(collection, true);
+	}
+
+	private boolean modifierCollectionRemove(Collection collection, boolean modifier) {
+		E[] array = this.array;
+		int newI = 0;
+		boolean callChange = false;
+		for (int i = 0; i < length; i++) {
+			if (collection.contains(array[i]) == modifier) {
+				array[newI] = array[i];
+				newI++;
+				callChange = true;
+			}
+		}
+		if (callChange = true)
+			for (; newI < length; newI++)
+				array[newI] = null;
+		return callChange;
 	}
 
 	@Override
 	public E set(int index, E element) {
-		if(index>=0)
-		//what if index is = 100 and you have only 10 element array?
-			array[index]=element;
+		checkIndexBounds(index);
+		array[index] = element;
 		return element;
 	}
 
@@ -199,13 +217,13 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
+		// TODO Object to array
 		return null;
 	}
 
 	@Override
 	public Object[] toArray(Object[] a) {
-		// TODO Auto-generated method stub
+		// TODO to array also object
 		return null;
 	}
 
