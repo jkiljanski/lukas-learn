@@ -217,14 +217,39 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Object to array
-		return null;
+		return Arrays.copyOf(array, length);
 	}
 
 	@Override
-	public Object[] toArray(Object[] a) {
-		// TODO to array also object
-		return null;
+	public <T>T[] toArray(T[] a) {
+
+	return null;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -314,4 +314,46 @@ public class LukaszArrayListTest {
 		Assert.assertEquals(true, element1);
 		Assert.assertEquals(true, element2);
 	}
+
+    @Test
+    public void shouldReturnArrayContainingAllElementsOfList(){
+        // given
+
+        List<Object> list = new LukaszGenericArrayList<>();
+        for (int i=0;i<=5;i++){
+            list.add(i);
+        }
+
+        // when
+        Object[] returnedArray = list.toArray();
+
+		//then
+		Assert.assertEquals(0,returnedArray[0]);
+		Assert.assertEquals(1,returnedArray[1]);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
