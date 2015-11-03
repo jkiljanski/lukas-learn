@@ -222,8 +222,13 @@ public class LukaszGenericArrayList<E> implements List<E> {
 
 	@Override
 	public <T>T[] toArray(T[] a) {
-
-	return null;
+		if (a.length < length) {
+			return (T[]) toArray();
+		} else {
+			System.arraycopy(array,0,a,0,length);
+			a[length]=null;
+			return a;
+		}
 	}
 
 }

@@ -315,22 +315,40 @@ public class LukaszArrayListTest {
 		Assert.assertEquals(true, element2);
 	}
 
-    @Test
-    public void shouldReturnArrayContainingAllElementsOfList(){
-        // given
+	@Test
+	public void shouldReturnArrayContainingAllElementsOfList() {
+		// given
 
-        List<Object> list = new LukaszGenericArrayList<>();
-        for (int i=0;i<=5;i++){
-            list.add(i);
-        }
-
-        // when
-        Object[] returnedArray = list.toArray();
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		Object[] returnedArray = list.toArray();
 
 		//then
-		Assert.assertEquals(0,returnedArray[0]);
-		Assert.assertEquals(1,returnedArray[1]);
-    }
+		Assert.assertEquals(0, returnedArray[0]);
+		Assert.assertEquals(1, returnedArray[1]);
+	}
+
+	@Test
+	public void shouldReturnArrayOfGivenArrayType() {
+		// given
+		List<Integer> list = new LukaszGenericArrayList<>();
+		for (int i = 0; i <= 5; i++) {
+			list.add(i);
+		}
+		// when
+		Integer[] returnedArray = new Integer[10];
+				list.toArray(returnedArray);
+
+		//then
+		int element1=returnedArray[0];
+		int element2=returnedArray[1];
+		Assert.assertEquals(0, element1);
+		Assert.assertEquals(1, element2);
+		Assert.assertNull(returnedArray[6]);
+	}
 }
 
 
